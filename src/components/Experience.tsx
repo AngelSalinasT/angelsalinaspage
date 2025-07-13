@@ -28,7 +28,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section className="py-20 px-6 bg-dark-950">
+    <section className="py-20 px-6 bg-black/40">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Línea de tiempo */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-purple md:left-1/2 md:transform md:-translate-x-1/2"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-purple z-5 md:left-1/2 md:transform md:-translate-x-1/2" style={{ boxShadow: 'none' }}></div>
 
           {experiences.map((experience, index) => (
             <motion.div
@@ -57,11 +57,11 @@ export default function Experience() {
               className="relative mb-12"
             >
               {/* Punto en la línea de tiempo */}
-              <div className="absolute left-6 w-4 h-4 bg-gradient-purple rounded-full border-4 border-dark-950 shadow-lg md:left-1/2 md:transform md:-translate-x-2"></div>
+              <div className="absolute left-6 w-4 h-4 bg-gradient-purple rounded-full shadow-lg z-10 md:left-1/2 md:transform md:-translate-x-2"></div>
 
               {/* Contenido */}
               <div className="ml-16 md:ml-0 md:ml-8 md:pl-8">
-                <div className="bg-dark-800 border border-primary-500/30 rounded-2xl p-6">
+                <div className="bg-black border border-primary-500/20 rounded-2xl p-6 hover:border-primary-500/40 transition-all duration-300">
                   <div className="flex items-center gap-2 mb-3">
                     {experience.type === 'education' ? (
                       <GraduationCap className="w-5 h-5 text-primary-400" />
@@ -96,7 +96,7 @@ export default function Experience() {
                     {experience.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-dark-700 text-primary-300 rounded-full text-xs font-medium border border-dark-600"
+                        className="px-3 py-1 bg-black/40 text-primary-300 rounded-full text-xs font-medium border border-primary-500/20"
                       >
                         {tech}
                       </span>

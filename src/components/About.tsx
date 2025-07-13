@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function About() {
   return (
-    <section className="py-20 px-6 bg-dark-950">
+    <section className="py-20 px-6 bg-black/40">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -26,31 +26,27 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
+            className="flex justify-center items-center h-full"
           >
-            <div className="bg-dark-800 border border-primary-500/30 rounded-2xl p-8 h-80 flex items-center justify-center">
-              <div className="text-center">
-                {/* Imagen de perfil */}
-                <div className="w-32 h-32 bg-gradient-purple rounded-full mx-auto mb-6 flex items-center justify-center animate-glow overflow-hidden">
-                  <Image
-                    src="/images/profile.jpg"
-                    alt="Ángel Salinas"
-                    width={128}
-                    height={128}
-                    className="rounded-full object-cover w-full h-full"
-                    onError={(e) => {
-                      // Si la imagen no existe, mostrar las iniciales
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.style.display = 'none';
-                      const nextElement = target.nextElementSibling as HTMLElement;
-                      if (nextElement) {
-                        nextElement.style.display = 'flex';
-                      }
-                    }}
-                  />
-                  <span className="text-white text-4xl font-bold" style={{display: 'none'}}>AS</span>
-                </div>
-                <p className="text-gray-300 font-medium">Ángel Salinas</p>
-              </div>
+            {/* Imagen de perfil */}
+            <div className="w-80 h-80 bg-gradient-purple rounded-xl flex items-center justify-center animate-glow overflow-hidden group cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-primary-500/50 border-2 border-transparent hover:border-primary-400">
+              <Image
+                src="/images/profile.jpg"
+                alt="Ángel Salinas"
+                width={320}
+                height={320}
+                className="rounded-xl object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                onError={(e) => {
+                  // Si la imagen no existe, mostrar las iniciales
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  const nextElement = target.nextElementSibling as HTMLElement;
+                  if (nextElement) {
+                    nextElement.style.display = 'flex';
+                  }
+                }}
+              />
+              <span className="text-white text-8xl font-bold" style={{display: 'none'}}>AS</span>
             </div>
           </motion.div>
 

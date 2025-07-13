@@ -95,7 +95,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-20 px-6 bg-dark-900">
+    <section className="py-20 px-6 bg-black/20">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -128,7 +128,7 @@ export default function Contact() {
             <div className="space-y-6">
               <motion.a
                 href="mailto:angel@angelsalinas.dev"
-                className="flex items-center gap-4 p-4 bg-dark-800 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/30"
+                className="flex items-center gap-4 p-4 bg-black/30 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/10 backdrop-blur-sm hover:border-primary-500/30"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -145,7 +145,7 @@ export default function Contact() {
                 href="http://wa.me/525650361257"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-dark-800 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/30"
+                className="flex items-center gap-4 p-4 bg-black/30 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/10 backdrop-blur-sm hover:border-primary-500/30"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -171,7 +171,7 @@ export default function Contact() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-12 h-12 bg-dark-700 rounded-lg flex items-center justify-center text-gray-300 transition-colors border border-dark-600 ${social.color}`}
+                    className={`w-12 h-12 bg-black/40 rounded-lg flex items-center justify-center text-gray-300 transition-colors border border-primary-500/10 hover:border-primary-500/30 ${social.color}`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -193,7 +193,7 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="bg-dark-800 border border-primary-500/30 rounded-2xl p-8">
+            <div className="bg-black/30 border border-primary-500/10 rounded-2xl p-8 backdrop-blur-sm hover:border-primary-500/30 transition-all duration-300">
               <h3 className="text-2xl font-bold text-white mb-6 font-space-grotesk">
                 Envíame un mensaje
               </h3>
@@ -209,7 +209,7 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-black/40 border border-primary-500/10 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
                     placeholder="Tu nombre"
                     required
                   />
@@ -225,7 +225,7 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-black/40 border border-primary-500/10 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
                     placeholder="tu@email.com"
                     required
                   />
@@ -241,7 +241,7 @@ export default function Contact() {
                     rows={4}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-black/40 border border-primary-500/10 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none placeholder-gray-400"
                     placeholder="Cuéntame sobre tu proyecto o idea de automatización..."
                     required
                   ></textarea>
@@ -280,7 +280,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-16 pt-8 border-t border-dark-700"
+          className="text-center mt-16 pt-8 border-t border-primary-500/10"
         >
           <p className="text-gray-400">
             © 2024 Ángel Salinas. Hecho con ❤️ usando Next.js y Framer Motion.

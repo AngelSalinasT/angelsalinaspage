@@ -39,7 +39,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 px-6 bg-dark-900">
+    <section id="projects" className="py-20 px-6 bg-black/20">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,12 +65,12 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`bg-dark-800 border border-primary-500/30 rounded-2xl overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col min-h-[600px] ${
+              className={`bg-black/30 border border-primary-500/10 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary-500/30 transition-all duration-300 flex flex-col min-h-[600px] backdrop-blur-sm ${
                 project.featured ? 'md:col-span-2 lg:col-span-2' : ''
               }`}
             >
               <div className="p-6 flex flex-col h-full">
-                <div className={`relative bg-gradient-to-br from-dark-700 to-dark-600 rounded-xl mb-6 overflow-hidden flex-shrink-0 ${
+                <div className={`relative bg-gradient-to-br from-black/50 to-gray-900/30 rounded-xl mb-6 overflow-hidden flex-shrink-0 ${
                   project.featured ? 'h-64' : 'h-48'
                 }`}>
                   <Image

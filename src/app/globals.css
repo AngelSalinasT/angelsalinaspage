@@ -9,7 +9,7 @@
   --foreground: #ffffff;
   --primary: #8b5cf6;
   --primary-dark: #7c3aed;
-  --secondary: #1f1f1f;
+  --secondary: #1a1a1a;
   --accent: #a855f7;
   --muted: #6b7280;
   --border: #2d2d2d;
@@ -58,7 +58,7 @@ html {
 
 /* Gradientes personalizados */
 .gradient-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d1b69 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d1b69 100%);
 }
 
 .gradient-text {
