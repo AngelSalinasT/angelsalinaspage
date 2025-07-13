@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --secondary: #1f1f1f;
+  --accent: #a855f7;
+  --muted: #6b7280;
+  --border: #2d2d2d;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+    --primary: #8b5cf6;
+    --primary-dark: #7c3aed;
+    --secondary: #f8f9fa;
+    --accent: #a855f7;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos personalizados para scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* Gradientes personalizados */
+.gradient-bg {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d1b69 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  padding: 1px;
+  border-radius: 12px;
+}
+
+.gradient-border > * {
+  background: var(--background);
+  border-radius: 11px;
+} 
