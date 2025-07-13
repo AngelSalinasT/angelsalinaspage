@@ -31,6 +31,6 @@ sleep 5
 sudo docker ps | grep angel-portfolio
 
 echo "🎉 ¡Despliegue completado!"
-echo "🌐 Tu portafolio está disponible en: http://tu-ip-ec2:3000"
+echo "🌐 Tu portafolio está disponible en: http://angelsalinas.dev:3000"
 echo "📊 Para ver logs: sudo docker logs angel-portfolio"
 echo "🛑 Para detener: sudo docker stop angel-portfolio" 
