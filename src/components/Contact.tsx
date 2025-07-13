@@ -1,7 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react'
+import { Mail, Github, Linkedin, MessageCircle } from 'lucide-react'
+import { useState } from 'react'
+
+// Ícono personalizado para TikTok
+const TikTokIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+)
 
 const socialLinks = [
   {
@@ -15,10 +23,77 @@ const socialLinks = [
     url: 'https://www.linkedin.com/in/angel-salinas-424515223/',
     icon: Linkedin,
     color: 'hover:bg-blue-600'
+  },
+  {
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@buildanddream?_t=ZS-8xyqu36iZeq&_r=1',
+    icon: TikTokIcon,
+    color: 'hover:bg-pink-600'
   }
 ]
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus('error')
+      setErrorMessage('Por favor completa todos los campos')
+      setTimeout(() => setSubmitStatus('idle'), 3000)
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setSubmitStatus('idle'), 3000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.error || 'Error al enviar el mensaje')
+        setTimeout(() => setSubmitStatus('idle'), 3000)
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+      setErrorMessage('Error de conexión. Por favor intenta de nuevo.')
+      setTimeout(() => setSubmitStatus('idle'), 3000)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section className="py-20 px-6 bg-dark-900">
       <div className="max-w-4xl mx-auto">
@@ -52,7 +127,7 @@ export default function Contact() {
             
             <div className="space-y-6">
               <motion.a
-                href="mailto:angel@correo.com"
+                href="mailto:angel@angelsalinas.dev"
                 className="flex items-center gap-4 p-4 bg-dark-800 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/30"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -62,12 +137,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-medium text-white">Email</p>
-                  <p className="text-gray-300">angel@correo.com</p>
+                  <p className="text-gray-300">angel@angelsalinas.dev</p>
                 </div>
               </motion.a>
 
               <motion.a
-                href="https://wa.me/34600000000"
+                href="http://wa.me/525650361257"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 bg-dark-800 rounded-xl shadow-sm hover:shadow-md transition-shadow group border border-primary-500/30"
@@ -79,7 +154,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-medium text-white">WhatsApp</p>
-                  <p className="text-gray-300">+34 600 000 000</p>
+                  <p className="text-gray-300">+52 56 5036 1257</p>
                 </div>
               </motion.a>
             </div>
@@ -123,7 +198,7 @@ export default function Contact() {
                 Envíame un mensaje
               </h3>
               
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Nombre
@@ -132,8 +207,11 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
                     placeholder="Tu nombre"
+                    required
                   />
                 </div>
 
@@ -145,8 +223,11 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
                     placeholder="tu@email.com"
+                    required
                   />
                 </div>
 
@@ -158,18 +239,35 @@ export default function Contact() {
                     id="message"
                     name="message"
                     rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none placeholder-gray-400"
                     placeholder="Cuéntame sobre tu proyecto o idea de automatización..."
+                    required
                   ></textarea>
                 </div>
 
+                {/* Status messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 text-sm">
+                    ¡Mensaje enviado exitosamente! Te responderé pronto.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-sm">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-purple text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-purple text-white py-3 px-6 rounded-lg font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
-                  Enviar Mensaje
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
                 </motion.button>
               </form>
             </div>
