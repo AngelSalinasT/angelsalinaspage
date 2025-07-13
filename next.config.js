@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // appDir ya no es experimental en Next.js 14
+  // Configuración para Docker
+  output: 'standalone',
+  // Configuración para producción
+  experimental: {
+    // Optimizaciones para producción
+  }
 }
 
 module.exports = nextConfig 
